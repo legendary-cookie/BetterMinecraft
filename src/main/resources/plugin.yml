@@ -1,0 +1,13 @@
+main: cosmo.betterminecraft.Core
+name: BetterMinecraft
+version: 1.0.0
+description: Makes minecraft better, just believe me!
+author: Vento
+commands:
+  killtest:
+    name: killtest
+    description: sets health to 0
+  gethealth:
+    name: gethealth
+    description: prints your health
+permissions:
