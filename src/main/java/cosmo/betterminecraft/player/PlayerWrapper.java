@@ -14,10 +14,11 @@ public class PlayerWrapper {
         // Store the player object
         this.player = player;
         this.health = getMaxHealth();
+        this.maxHealth = calculateMaxHealth();
     }
 
     // Health
-    private double maxHealth = calculateMaxHealth();
+    private double maxHealth;
     private double health;
     private double baseHealth = Core.getInstance().config.getDouble("health.base");
 
@@ -49,5 +50,11 @@ public class PlayerWrapper {
     // easier tp
     public void tp(Location location) {
         player.teleport(location);
+    }
+
+    // Update player scales/strength/health and so on
+    public void updateStats() {
+        player.setHealthScale(Core.players.get(player).getMaxHealth());
+        maxHealth = calculateMaxHealth();
     }
 }

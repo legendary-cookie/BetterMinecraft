@@ -13,6 +13,7 @@ public class PlayerServerEvents implements Listener {
     public void onJoin(PlayerJoinEvent e) {
         Core.players.put(e.getPlayer(), new PlayerWrapper(e.getPlayer()));
         e.getPlayer().sendTitle(ChatColor.GOLD + "Welcome!", ChatColor.GOLD + "We are setting everything up for you!", 1, 10, 1);
+        Core.players.get(e.getPlayer()).updateStats();
     }
 
     @EventHandler

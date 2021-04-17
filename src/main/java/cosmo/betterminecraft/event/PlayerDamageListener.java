@@ -2,8 +2,6 @@ package cosmo.betterminecraft.event;
 
 import cosmo.betterminecraft.Core;
 import cosmo.betterminecraft.player.PlayerWrapper;
-import net.kyori.adventure.sound.Sound;
-import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -25,6 +23,5 @@ public class PlayerDamageListener implements Listener {
             pw.setHealth(pw.getMaxHealth());
             return;
         }
-        p.setHealth(20.0D);
     }
 }
