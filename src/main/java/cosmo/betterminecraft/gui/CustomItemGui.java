@@ -1,5 +1,6 @@
 package cosmo.betterminecraft.gui;
 
+import cosmo.betterminecraft.Core;
 import cosmo.betterminecraft.items.REU;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -14,39 +15,27 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Arrays;
+import java.util.Map;
 
 public class CustomItemGui implements Listener {
     private final Inventory inv;
 
     public CustomItemGui() {
         // Create a new inventory, with no owner (as this isn't a real inventory), a size of nine, called example
-        inv = Bukkit.createInventory(null, 9, "Custom Items");
-
+        inv = Bukkit.createInventory(null, 9);
         // Put the items into the inventory
         initializeItems();
+        // Registers events for this gui
+        Core.getInstance().getServer().getPluginManager().registerEvents(this, Core.getInstance());
     }
 
     // You can call this whenever you want to put the items in
     public void initializeItems() {
-        new REU().items.forEach((key, itemStack) -> {
+        for (Map.Entry<String, ItemStack> entry : Core.getInstance().getReu().items.entrySet()) {
+            String key = entry.getKey();
+            ItemStack itemStack = entry.getValue();
             inv.addItem(itemStack);
-        });
-    }
-
-    // Nice little method to create a gui item with a custom name, and description
-    protected ItemStack createGuiItem(final Material material, final String name, final String... lore) {
-        final ItemStack item = new ItemStack(material, 1);
-        final ItemMeta meta = item.getItemMeta();
-
-        // Set the name of the item
-        meta.setDisplayName(name);
-
-        // Set the lore of the item
-        meta.setLore(Arrays.asList(lore));
-
-        item.setItemMeta(meta);
-
-        return item;
+        }
     }
 
     // You can open the inventory with this
@@ -68,8 +57,9 @@ public class CustomItemGui implements Listener {
 
         final Player p = (Player) e.getWhoClicked();
 
-        // Using slots click is a best option for your inventory click's
-        p.sendMessage("You clicked at slot " + e.getRawSlot());
+        p.getInventory().addItem(clickedItem);
+
+
     }
 
     // Cancel dragging in our inventory

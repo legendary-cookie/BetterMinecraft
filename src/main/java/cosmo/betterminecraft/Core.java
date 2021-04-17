@@ -7,6 +7,7 @@ import cosmo.betterminecraft.commands.KillTestCommand;
 import cosmo.betterminecraft.event.PlayerDamageListener;
 import cosmo.betterminecraft.event.PlayerDeathEvents;
 import cosmo.betterminecraft.event.PlayerServerEvents;
+import cosmo.betterminecraft.gui.GuiInstances;
 import cosmo.betterminecraft.items.InfernoSword;
 import cosmo.betterminecraft.items.REU;
 import cosmo.betterminecraft.player.PlayerWrapper;
@@ -24,6 +25,9 @@ public class Core extends JavaPlugin {
     private PluginManager pm = getServer().getPluginManager();
     public FileConfiguration config;
     private static Core instance;
+    private GuiInstances guiInstances;
+    // Manager
+    private REU reu;
 
     public static Core getInstance() {
         return instance;
@@ -57,18 +61,28 @@ public class Core extends JavaPlugin {
         this.getCommand("gethealth").setExecutor(new GetHealthCommand());
         this.getCommand("ic").setExecutor(new GiveCustomItemCommand());
         /* ITEMS */
-        // Manager
-        REU reu = new REU();
+        reu = new REU();
         // Instances of all items
         InfernoSword infernoSword = new InfernoSword();
         // Register Items
         reu.registerItem("infernosword", infernoSword.create());
         // Register Recipes
         reu.registerRecipe(infernoSword.createRecipe(infernoSword.create()));
+        /* GUI */
+        this.guiInstances = new GuiInstances();
+    }
+
+    public REU getReu() {
+        return reu;
+    }
+
+    public GuiInstances getGuiInstances() {
+        return guiInstances;
     }
 
     @Override
     public void onDisable() {
         HandlerList.unregisterAll();
+        reu.unregisterRecipes();
     }
 }
