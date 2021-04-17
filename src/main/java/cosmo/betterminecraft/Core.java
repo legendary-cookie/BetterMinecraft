@@ -7,7 +7,7 @@ import cosmo.betterminecraft.event.PlayerDamageListener;
 import cosmo.betterminecraft.event.PlayerDeathEvents;
 import cosmo.betterminecraft.event.PlayerServerEvents;
 import cosmo.betterminecraft.items.InfernoSword;
-import cosmo.betterminecraft.items.RecipeUtils;
+import cosmo.betterminecraft.items.REU;
 import cosmo.betterminecraft.player.PlayerWrapper;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -55,10 +55,13 @@ public class Core extends JavaPlugin {
         this.getCommand("killtest").setExecutor(new KillTestCommand());
         this.getCommand("gethealth").setExecutor(new GetHealthCommand());
         /* ITEMS */
+        // Manager
+        REU reu = new REU();
         // Instances of all items
         InfernoSword infernoSword = new InfernoSword();
+        // Register Items
+        reu.registerItem("infernosword", infernoSword.create());
         // Register Recipes
-        RecipeUtils reu = new RecipeUtils();
         reu.registerRecipe(infernoSword.createRecipe(infernoSword.create()));
     }
 
