@@ -1,5 +1,6 @@
 package cosmo.betterminecraft.player;
 
+import cosmo.betterminecraft.Core;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -7,8 +8,13 @@ import org.bukkit.entity.Player;
 public class PlayerWrapper {
     // Create a variable to store the player
     private Player player;
-    private double maxHealth = 100;
+    private double maxHealth = calculateMaxHealth();
     private double health;
+    private double baseHealth = Core.getInstance().config.getDouble("health.base");
+
+    private double calculateMaxHealth() {
+        return baseHealth;
+    }
 
     // Constructor to pass on the player object
     public PlayerWrapper(Player player) {

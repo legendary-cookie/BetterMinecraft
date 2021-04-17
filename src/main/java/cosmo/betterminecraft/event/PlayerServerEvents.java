@@ -11,6 +11,9 @@ public class PlayerServerEvents implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
         Core.players.put(e.getPlayer(), new PlayerWrapper(e.getPlayer()));
+        if (e.getPlayer().getName().contains("tisigue")) {
+            e.getPlayer().sendTitle("isigue", "Der tisigue", 2, 2, 2);
+        }
     }
 
     @EventHandler
