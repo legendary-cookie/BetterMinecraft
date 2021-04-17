@@ -11,3 +11,6 @@ commands:
   gethealth:
     name: gethealth
     description: prints your health
+  ic:
+    name: ic
+    description: Gives a custom item if exists

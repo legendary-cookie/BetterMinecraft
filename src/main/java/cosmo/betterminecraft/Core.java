@@ -2,6 +2,7 @@ package cosmo.betterminecraft;
 
 import cosmo.Cosmotil.*;
 import cosmo.betterminecraft.commands.GetHealthCommand;
+import cosmo.betterminecraft.commands.GiveCustomItemCommand;
 import cosmo.betterminecraft.commands.KillTestCommand;
 import cosmo.betterminecraft.event.PlayerDamageListener;
 import cosmo.betterminecraft.event.PlayerDeathEvents;
@@ -54,6 +55,7 @@ public class Core extends JavaPlugin {
         // Register commands here
         this.getCommand("killtest").setExecutor(new KillTestCommand());
         this.getCommand("gethealth").setExecutor(new GetHealthCommand());
+        this.getCommand("ic").setExecutor(new GiveCustomItemCommand());
         /* ITEMS */
         // Manager
         REU reu = new REU();
