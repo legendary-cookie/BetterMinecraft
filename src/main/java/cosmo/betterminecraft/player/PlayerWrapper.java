@@ -52,9 +52,5 @@ public class PlayerWrapper {
         player.teleport(location);
     }
 
-    // Update player scales/strength/health and so on
-    public void updateStats() {
-        player.setHealthScale(Core.players.get(player).getMaxHealth());
-        maxHealth = calculateMaxHealth();
-    }
+
 }

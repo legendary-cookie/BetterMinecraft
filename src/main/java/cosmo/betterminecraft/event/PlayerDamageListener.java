@@ -16,12 +16,13 @@ public class PlayerDamageListener implements Listener {
         Player p = (Player) event.getEntity();
         PlayerWrapper pw = Core.players.get(p);
         pw.setHealth(pw.getHealth() - damage);
-        event.setCancelled(true);
         if (pw.getHealth() <= 0) {
-            pw.tp(p.getBedSpawnLocation());
+            //pw.tp(p.getBedSpawnLocation());
+            p.setHealth(0.0D);
             pw.playDeathSound();
             pw.setHealth(pw.getMaxHealth());
             return;
         }
+        event.setDamage(0.0D);
     }
 }

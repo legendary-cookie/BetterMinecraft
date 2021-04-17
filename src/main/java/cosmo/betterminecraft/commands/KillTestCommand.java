@@ -1,6 +1,7 @@
 package cosmo.betterminecraft.commands;
 
 import cosmo.betterminecraft.Core;
+import cosmo.betterminecraft.player.PlayerWrapper;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,8 +13,8 @@ public class KillTestCommand implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (command.getName().equalsIgnoreCase("killtest")) {
             Player player = (Player) sender;
-            Core.players.get(player).setHealth(0.0D);
-            player.damage(1);
+            PlayerWrapper pw = Core.players.get(player);
+            player.damage(pw.getHealth());
             return true;
         }
         return false;
