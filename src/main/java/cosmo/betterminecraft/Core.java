@@ -1,6 +1,6 @@
 package cosmo.betterminecraft;
 
-import cosmo.Cosmotil;
+import cosmo.Cosmotil.*;
 import cosmo.betterminecraft.commands.GetHealthCommand;
 import cosmo.betterminecraft.commands.KillTestCommand;
 import cosmo.betterminecraft.event.PlayerDamageListener;

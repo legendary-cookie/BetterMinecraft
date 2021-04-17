@@ -1,6 +1,7 @@
 main: cosmo.betterminecraft.Core
 name: BetterMinecraft
 version: 1.0.0
+api-version: 1.16
 description: Makes minecraft better, just believe me!
 author: Vento
 commands:
@@ -10,4 +11,3 @@ commands:
   gethealth:
     name: gethealth
     description: prints your health
-permissions:

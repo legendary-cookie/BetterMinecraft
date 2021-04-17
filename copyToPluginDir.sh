@@ -1,4 +1,4 @@
 #!/bin/bash
-./gradlew build
+./gradlew shadowJar
 rm -f ~/mctestserver/betterminecraft.jar
-cp build/libs/*.jar ~/mctestserver/betterminecraft.jar
+cp build/libs/*-all.jar ~/mctestserver/betterminecraft.jar

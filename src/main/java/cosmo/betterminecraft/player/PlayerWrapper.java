@@ -8,13 +8,6 @@ import org.bukkit.entity.Player;
 public class PlayerWrapper {
     // Create a variable to store the player
     private Player player;
-    private double maxHealth = calculateMaxHealth();
-    private double health;
-    private double baseHealth = Core.getInstance().config.getDouble("health.base");
-
-    private double calculateMaxHealth() {
-        return baseHealth;
-    }
 
     // Constructor to pass on the player object
     public PlayerWrapper(Player player) {
@@ -23,12 +16,17 @@ public class PlayerWrapper {
         this.health = getMaxHealth();
     }
 
-    public double getMaxHealth() {
-        return maxHealth;
+    // Health
+    private double maxHealth = calculateMaxHealth();
+    private double health;
+    private double baseHealth = Core.getInstance().config.getDouble("health.base");
+
+    private double calculateMaxHealth() {
+        return baseHealth;
     }
 
-    public void playDeathSound() {
-        player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_HURT, 1, 0);
+    public double getMaxHealth() {
+        return maxHealth;
     }
 
     public double getHealth() {
@@ -39,12 +37,16 @@ public class PlayerWrapper {
         this.health = health;
     }
 
+    public void playDeathSound() {
+        player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_HURT, 1, 0);
+    }
+
     // Getter to get the player object
     public Player getPlayer() {
         return player;
     }
 
-    // Random method for example
+    // easier tp
     public void tp(Location location) {
         player.teleport(location);
     }
