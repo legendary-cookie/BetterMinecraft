@@ -22,7 +22,7 @@ public class PlayerWrapper {
     }
 
     public void playDeathSound() {
-        player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_HURT, 5, 1);
+        player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_HURT, 1, 0);
     }
 
     public double getHealth() {
