@@ -1,6 +1,7 @@
 package cosmo.betterminecraft.player;
 
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 public class PlayerWrapper {
@@ -18,6 +19,10 @@ public class PlayerWrapper {
 
     public double getMaxHealth() {
         return maxHealth;
+    }
+
+    public void playDeathSound() {
+        player.playSound(player.getLocation(), Sound.ENTITY_ENDERMAN_HURT, 5, 1);
     }
 
     public double getHealth() {
