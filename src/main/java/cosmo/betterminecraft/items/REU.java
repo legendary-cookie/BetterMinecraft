@@ -13,10 +13,22 @@ public class REU {
     private ArrayList<ShapedRecipe> recipes = new ArrayList<>();
     public Map<String, ItemStack> items = new HashMap<>();
 
+    /**
+     * Registers an recipe
+     *
+     * @param recipe
+     */
     public void registerRecipe(Recipe recipe) {
+        recipes.add((ShapedRecipe) recipe);
         Bukkit.addRecipe(recipe);
     }
 
+    /**
+     * Register an customitem into the map (for example to use with the itemgui)
+     *
+     * @param key
+     * @param item
+     */
     public void registerItem(String key, ItemStack item) {
         items.put(key, item);
     }
