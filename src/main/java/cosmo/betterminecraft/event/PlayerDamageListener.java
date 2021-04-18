@@ -2,6 +2,7 @@ package cosmo.betterminecraft.event;
 
 import cosmo.betterminecraft.Core;
 import cosmo.betterminecraft.player.PlayerWrapper;
+import cosmo.betterminecraft.scoreboard.ScoreboardStuff;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -16,6 +17,7 @@ public class PlayerDamageListener implements Listener {
         Player p = (Player) event.getEntity();
         PlayerWrapper pw = Core.players.get(p);
         pw.setHealth(pw.getHealth() - damage);
+        ScoreboardStuff.updateScoreboard(p);
         if (pw.getHealth() <= 0) {
             //pw.tp(p.getBedSpawnLocation());
             p.setHealth(0.0D);

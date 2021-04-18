@@ -13,7 +13,6 @@ import cosmo.betterminecraft.gui.GuiInstances;
 import cosmo.betterminecraft.items.InfernoSword;
 import cosmo.betterminecraft.items.REU;
 import cosmo.betterminecraft.player.PlayerWrapper;
-import cosmo.betterminecraft.scoreboard.BelowName;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;

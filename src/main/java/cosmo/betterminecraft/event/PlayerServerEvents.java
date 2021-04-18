@@ -3,6 +3,7 @@ package cosmo.betterminecraft.event;
 import cosmo.betterminecraft.Core;
 import cosmo.betterminecraft.database.BankDb;
 import cosmo.betterminecraft.player.PlayerWrapper;
+import cosmo.betterminecraft.scoreboard.ScoreboardStuff;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,6 +25,8 @@ public class PlayerServerEvents implements Listener {
         BankDb bank = Core.getInstance().getBankDatabase();
         UUID uuid = e.getPlayer().getUniqueId();
         bank.createPlayerAccount(uuid);
+        // Setup scoreboard
+        ScoreboardStuff.updateScoreboard(e.getPlayer());
     }
 
     @EventHandler
