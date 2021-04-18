@@ -21,23 +21,38 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Core extends JavaPlugin {
+    // PlayerWrapper to access health and so on
     public static Map<Player, PlayerWrapper> players = new HashMap<>();
+    // The PluginManager, used for registering events
     private PluginManager pm = getServer().getPluginManager();
+    // The config file
     public FileConfiguration config;
+    // Instance of this class, for access to public functions
     private static Core instance;
+    // Instances for accessing guis
     private GuiInstances guiInstances;
     // Manager
     private REU reu;
 
+    /**
+     * @return Instance of the Core class
+     */
     public static Core getInstance() {
         return instance;
     }
 
+    /**
+     * Executed on load
+     */
     @Override
     public void onLoad() {
         Cosmotil.helloWorld();
     }
 
+    /**
+     * Executed on enable
+     * Here everything gets set up.
+     */
     @Override
     public void onEnable() {
         // Create an instance for easy access
@@ -72,14 +87,26 @@ public class Core extends JavaPlugin {
         this.guiInstances = new GuiInstances();
     }
 
+    /**
+     * Returns The manager for items and recipes
+     *
+     * @return instance of REU
+     */
     public REU getReu() {
         return reu;
     }
 
+
+    /**
+     * @return instance of the guiInstances
+     */
     public GuiInstances getGuiInstances() {
         return guiInstances;
     }
 
+    /**
+     * Unregister everything
+     */
     @Override
     public void onDisable() {
         HandlerList.unregisterAll();

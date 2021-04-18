@@ -31,6 +31,8 @@ dependencies {
     compileOnly "com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT"
     // Cosmotil from nexus
     compile "cosmo:cosmotil:1.0.1"
+    // Vault api
+    compileOnly "com.github.MilkBowl:VaultAPI:1.7"
 }
 
 shadowJar {
