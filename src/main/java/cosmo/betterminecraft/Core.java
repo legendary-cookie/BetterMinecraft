@@ -40,7 +40,7 @@ public class Core extends JavaPlugin {
     private static final Logger log = Logger.getLogger("Minecraft");
     // DB stuff
     private MariaDB db = new MariaDB("db", "3306", "betterminecraft", "root", "secret");
-    private BankDb bank;
+    private BankDb bank = new BankDb(db);
 
     /**
      * @return Instance of the Core class
@@ -140,5 +140,9 @@ public class Core extends JavaPlugin {
 
     public MariaDB getDatabase() {
         return db;
+    }
+
+    public BankDb getBankDatabase() {
+        return bank;
     }
 }
