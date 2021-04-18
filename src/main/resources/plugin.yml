@@ -4,6 +4,7 @@ version: 1.0.0
 api-version: 1.16
 description: Makes minecraft better, just believe me!
 author: Vento
+depend: [Vault]
 commands:
   killtest:
     name: killtest

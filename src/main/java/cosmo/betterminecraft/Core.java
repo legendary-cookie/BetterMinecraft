@@ -4,6 +4,7 @@ import cosmo.Cosmotil.*;
 import cosmo.betterminecraft.commands.GetHealthCommand;
 import cosmo.betterminecraft.commands.GiveCustomItemCommand;
 import cosmo.betterminecraft.commands.KillTestCommand;
+import cosmo.betterminecraft.economy.AccountManager;
 import cosmo.betterminecraft.event.PlayerDamageListener;
 import cosmo.betterminecraft.event.PlayerDeathEvents;
 import cosmo.betterminecraft.event.PlayerServerEvents;
@@ -11,6 +12,9 @@ import cosmo.betterminecraft.gui.GuiInstances;
 import cosmo.betterminecraft.items.InfernoSword;
 import cosmo.betterminecraft.items.REU;
 import cosmo.betterminecraft.player.PlayerWrapper;
+import net.milkbowl.vault.chat.Chat;
+import net.milkbowl.vault.economy.Economy;
+import net.milkbowl.vault.permission.Permission;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
@@ -19,6 +23,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class Core extends JavaPlugin {
     // PlayerWrapper to access health and so on
@@ -33,6 +38,13 @@ public class Core extends JavaPlugin {
     private GuiInstances guiInstances;
     // Manager
     private REU reu;
+    // Logger
+    private static final Logger log = Logger.getLogger("Minecraft");
+    // Vault stuff
+    private static Economy econ = null;
+    private static Permission perms = null;
+    private static Chat chat = null;
+    private static AccountManager accountManager;
 
     /**
      * @return Instance of the Core class
@@ -40,6 +52,7 @@ public class Core extends JavaPlugin {
     public static Core getInstance() {
         return instance;
     }
+
 
     /**
      * Executed on load
@@ -85,7 +98,10 @@ public class Core extends JavaPlugin {
         reu.registerRecipe(infernoSword.createRecipe(infernoSword.create()));
         /* GUI */
         this.guiInstances = new GuiInstances();
+        /* Economy */
+        accountManager = new AccountManager();
     }
+
 
     /**
      * Returns The manager for items and recipes
@@ -111,5 +127,19 @@ public class Core extends JavaPlugin {
     public void onDisable() {
         HandlerList.unregisterAll();
         reu.unregisterRecipes();
+        log.info(String.format("[%s] Disabled Version %s", getDescription().getName(), getDescription().getVersion()));
+    }
+
+
+    public String getCurrencyNamePlural() {
+        return "coins";
+    }
+
+    public String getCurrencyNameSingular() {
+        return "coin";
+    }
+
+    public AccountManager getAccountManager() {
+        return accountManager;
     }
 }
