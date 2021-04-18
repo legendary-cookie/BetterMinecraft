@@ -7,6 +7,7 @@ import org.bukkit.OfflinePlayer;
 
 import java.util.List;
 
+// https://www.spigotmc.org/threads/vault-economy-provider.366757/
 public class BetterEconomy implements Economy {
     @Override
     public boolean isEnabled() {
