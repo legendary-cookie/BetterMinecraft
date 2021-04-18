@@ -21,6 +21,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -45,6 +46,7 @@ public class Core extends JavaPlugin {
     private static Permission perms = null;
     private static Chat chat = null;
     private static AccountManager accountManager;
+    private File accountDirectory = new File(Core.getInstance().getDataFolder(), "accounts");
 
     /**
      * @return Instance of the Core class
@@ -99,6 +101,9 @@ public class Core extends JavaPlugin {
         /* GUI */
         this.guiInstances = new GuiInstances();
         /* Economy */
+        if (!accountDirectory.exists()) {
+            accountDirectory.mkdirs();
+        }
         accountManager = new AccountManager();
     }
 
@@ -141,5 +146,9 @@ public class Core extends JavaPlugin {
 
     public AccountManager getAccountManager() {
         return accountManager;
+    }
+
+    public File getAccountDirectory() {
+        return accountDirectory;
     }
 }
