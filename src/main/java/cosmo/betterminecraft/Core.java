@@ -2,11 +2,9 @@ package cosmo.betterminecraft;
 
 import cosmo.Cosmotil.Cosmotil;
 import cosmo.Cosmotil.database.MariaDB;
-import cosmo.betterminecraft.commands.GetBankBalanceCommand;
-import cosmo.betterminecraft.commands.GetHealthCommand;
-import cosmo.betterminecraft.commands.GiveCustomItemCommand;
-import cosmo.betterminecraft.commands.KillTestCommand;
+import cosmo.betterminecraft.commands.*;
 import cosmo.betterminecraft.database.BankDb;
+import cosmo.betterminecraft.event.EconomyListener;
 import cosmo.betterminecraft.event.PlayerDamageListener;
 import cosmo.betterminecraft.event.PlayerDeathEvents;
 import cosmo.betterminecraft.event.PlayerServerEvents;
@@ -84,11 +82,13 @@ public class Core extends JavaPlugin {
         pm.registerEvents(new PlayerServerEvents(), this);
         pm.registerEvents(new PlayerDamageListener(), this);
         pm.registerEvents(new PlayerDeathEvents(), this);
+        pm.registerEvents(new EconomyListener(), this);
         // Register commands here
         this.getCommand("killtest").setExecutor(new KillTestCommand());
         this.getCommand("gethealth").setExecutor(new GetHealthCommand());
         this.getCommand("ic").setExecutor(new GiveCustomItemCommand());
         this.getCommand("balance").setExecutor(new GetBankBalanceCommand());
+        this.getCommand("moneygui").setExecutor(new MoneyGuiCommand());
         /* ITEMS */
         reu = new REU();
         // Instances of all items

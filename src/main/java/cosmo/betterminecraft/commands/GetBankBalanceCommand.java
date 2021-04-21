@@ -14,7 +14,6 @@ public class GetBankBalanceCommand implements CommandExecutor {
         if (command.getName().equalsIgnoreCase("balance")) {
             Player player = (Player) sender;
             int bal = Core.getInstance().getBankDatabase().getPlayerBankBalance(player.getUniqueId());
-            System.out.println(bal);
             if (bal == -1) {
                 sender.sendMessage("A database occurred! Please report it to your server administrator!");
             } else if (bal == 0) {

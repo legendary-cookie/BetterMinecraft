@@ -2,6 +2,7 @@ package cosmo.betterminecraft.database;
 
 import cosmo.Cosmotil.database.MariaDB;
 import cosmo.betterminecraft.Core;
+import org.bukkit.Bukkit;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,6 +27,21 @@ public class BankDb {
         }
     }
 
+    public void addCoinsToBank(UUID uuid, int amount) {
+        try {
+            int curbal = getPlayerBankBalance(uuid);
+            PreparedStatement preparedStatement = db.getConnection().prepareStatement(
+                    "UPDATE bank SET balance=? WHERE UUID=?"
+            );
+            preparedStatement.setInt(1, curbal + amount);
+            preparedStatement.setString(2, uuid.toString());
+            preparedStatement.executeUpdate();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+
     public int getPlayerBankBalance(UUID uuid) {
         try {
             PreparedStatement ps = db.getConnection().prepareStatement(
@@ -35,6 +51,22 @@ public class BankDb {
             ResultSet res = ps.executeQuery();
             while (res.next()) {
                 return res.getInt("balance");
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return -1;
+    }
+
+    public int getPlayerPurse(UUID uuid) {
+        try {
+            PreparedStatement ps = db.getConnection().prepareStatement(
+                    "SELECT * FROM bank WHERE UUID=?"
+            );
+            ps.setString(1, uuid.toString());
+            ResultSet res = ps.executeQuery();
+            while (res.next()) {
+                return res.getInt("purse");
             }
         } catch (SQLException exception) {
             exception.printStackTrace();

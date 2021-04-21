@@ -17,3 +17,6 @@ commands:
   balance:
     name: balance
     description: gets your balance
+  moneygui:
+    name: moneygui
+    description: opens the money gui
