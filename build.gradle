@@ -30,11 +30,11 @@ dependencies {
     // Paper api
     compileOnly "com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT"
     // Cosmotil from nexus
-    compile "cosmo:cosmotil:1.1.5"
+    compile "cosmo:cosmotil:1.1.6"
 }
 
 shadowJar {
     dependencies {
-        include dependency("cosmo:cosmotil:1.1.5")
+        include dependency("cosmo:cosmotil:1.1.6")
     }
 }

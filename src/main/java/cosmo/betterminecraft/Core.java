@@ -2,6 +2,7 @@ package cosmo.betterminecraft;
 
 import cosmo.Cosmotil.Cosmotil;
 import cosmo.Cosmotil.database.MariaDB;
+import cosmo.betterminecraft.commands.GetBankBalanceCommand;
 import cosmo.betterminecraft.commands.GetHealthCommand;
 import cosmo.betterminecraft.commands.GiveCustomItemCommand;
 import cosmo.betterminecraft.commands.KillTestCommand;
@@ -87,6 +88,7 @@ public class Core extends JavaPlugin {
         this.getCommand("killtest").setExecutor(new KillTestCommand());
         this.getCommand("gethealth").setExecutor(new GetHealthCommand());
         this.getCommand("ic").setExecutor(new GiveCustomItemCommand());
+        this.getCommand("balance").setExecutor(new GetBankBalanceCommand());
         /* ITEMS */
         reu = new REU();
         // Instances of all items

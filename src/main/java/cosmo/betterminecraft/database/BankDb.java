@@ -26,19 +26,22 @@ public class BankDb {
         }
     }
 
-    public boolean checkPlayerHasAccount(UUID uuid) {
+    public int getPlayerBankBalance(UUID uuid) {
         try {
-            PreparedStatement ps = db.getConnection().prepareStatement("SELECT * FROM bank WHERE uuid = ?");
+            PreparedStatement ps = db.getConnection().prepareStatement(
+                    "SELECT balance FROM bank WHERE UUID=?"
+            );
             ps.setString(1, uuid.toString());
-            ResultSet result = ps.executeQuery();
-            if (result.next()) {
-                return true;
+            ResultSet res = ps.executeQuery();
+            if (res.next()) {
+                return res.getInt("balance");
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
         }
-        return false;
+        return 0;
     }
+
 
     public void createPlayerAccount(UUID uuid) {
         try {
