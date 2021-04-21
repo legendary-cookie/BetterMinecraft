@@ -29,11 +29,11 @@ public class BankDb {
     public int getPlayerBankBalance(UUID uuid) {
         try {
             PreparedStatement ps = db.getConnection().prepareStatement(
-                    "SELECT balance FROM bank WHERE UUID=?"
+                    "SELECT * FROM bank WHERE UUID=?"
             );
             ps.setString(1, uuid.toString());
             ResultSet res = ps.executeQuery();
-            if (res.next()) {
+            while (res.next()) {
                 return res.getInt("balance");
             }
         } catch (SQLException exception) {

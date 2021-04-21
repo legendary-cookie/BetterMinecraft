@@ -19,10 +19,10 @@ public class PlayerDamageListener implements Listener {
         pw.setHealth(pw.getHealth() - damage);
         ScoreboardStuff.updateScoreboard(p);
         if (pw.getHealth() <= 0) {
-            //pw.tp(p.getBedSpawnLocation());
             p.setHealth(0.0D);
             pw.playDeathSound();
             pw.setHealth(pw.getMaxHealth());
+            ScoreboardStuff.updateScoreboard(p);
             return;
         }
         event.setDamage(0.0D);
