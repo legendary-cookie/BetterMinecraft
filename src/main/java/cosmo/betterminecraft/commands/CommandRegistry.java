@@ -18,7 +18,7 @@ public class CommandRegistry {
             bukkitCommandMap = Bukkit.getServer().getClass().getDeclaredField("commandMap");
             bukkitCommandMap.setAccessible(true);
             CommandMap commandMap = (CommandMap) bukkitCommandMap.get(Bukkit.getServer());
-            commandMap.register(command.getName(), command);
+            commandMap.register("cosmo", command);
         } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
