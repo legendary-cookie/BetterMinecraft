@@ -7,7 +7,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 public class EconomyUpdateEvent extends Event {
-    private Player player;
+    private final Player player;
     private static final HandlerList HANDLERS_LIST = new HandlerList();
 
     public EconomyUpdateEvent(Player player) {

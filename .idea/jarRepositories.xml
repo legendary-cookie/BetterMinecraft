@@ -41,5 +41,10 @@
       <option name="name" value="maven3" />
       <option name="url" value="http://minecraft:8081/repository/maven-public/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven3" />
+      <option name="name" value="maven3" />
+      <option name="url" value="http://docker1.getcom.de:7777" />
+    </remote-repository>
   </component>
 </project>
