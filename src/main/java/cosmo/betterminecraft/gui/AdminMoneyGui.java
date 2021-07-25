@@ -14,8 +14,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.Map;
-
 public class AdminMoneyGui implements Listener {
     private final Inventory inv;
 
@@ -45,10 +43,9 @@ public class AdminMoneyGui implements Listener {
         inv.addItem(giveItem);
         inv.addItem(fillerItem);
         inv.addItem(takeItem);
-
     }
 
-    // You can open the inventory with this
+    // The inv can be opened through this
     public void openInventory(final HumanEntity ent) {
         ent.openInventory(inv);
     }
@@ -57,23 +54,18 @@ public class AdminMoneyGui implements Listener {
     @EventHandler
     public void onInventoryClick(final InventoryClickEvent e) {
         if (e.getInventory() != inv) return;
-
         e.setCancelled(true);
-
         final ItemStack clickedItem = e.getCurrentItem();
-
         // verify current item is not null
         if (clickedItem == null || clickedItem.getType() == Material.AIR) return;
-
         final Player p = (Player) e.getWhoClicked();
-
         if (clickedItem.getItemMeta().getDisplayName().equalsIgnoreCase("Give 100 coins")) {
             Core.getInstance().getBankDatabase().addCoinsToBank(p.getUniqueId(), 100);
             Bukkit.getPluginManager().callEvent(new EconomyUpdateEvent(p));
         }
     }
 
-    // Cancel dragging in our inventory
+    // Cancel dragging in the inventory
     @EventHandler
     public void onInventoryClick(final InventoryDragEvent e) {
         if (e.getInventory() == inv) {

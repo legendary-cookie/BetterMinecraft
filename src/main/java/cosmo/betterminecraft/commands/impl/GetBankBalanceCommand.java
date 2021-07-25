@@ -1,4 +1,4 @@
-package cosmo.betterminecraft.commands;
+package cosmo.betterminecraft.commands.impl;
 
 import cosmo.betterminecraft.Core;
 import org.bukkit.command.Command;

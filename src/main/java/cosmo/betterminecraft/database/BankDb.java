@@ -11,7 +11,7 @@ import java.util.UUID;
 
 /**
  * Everything related to bank/purse db
- * is handled in this class
+ * should be handled in this class
  *
  * @author Vento
  * @since 0.1.0

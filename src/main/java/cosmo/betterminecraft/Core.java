@@ -2,7 +2,11 @@ package cosmo.betterminecraft;
 
 import cosmo.Cosmotil.Cosmotil;
 import cosmo.Cosmotil.database.MariaDB;
-import cosmo.betterminecraft.commands.*;
+import cosmo.betterminecraft.commands.CommandRegistry;
+import cosmo.betterminecraft.commands.impl.GetBankBalanceCommand;
+import cosmo.betterminecraft.commands.impl.GetHealthCommand;
+import cosmo.betterminecraft.commands.impl.GiveCustomItemCommand;
+import cosmo.betterminecraft.commands.impl.MoneyGuiCommand;
 import cosmo.betterminecraft.database.BankDb;
 import cosmo.betterminecraft.event.EconomyListener;
 import cosmo.betterminecraft.event.PlayerDamageListener;
@@ -51,7 +55,8 @@ public class Core extends JavaPlugin {
     // DB stuff
     private final MariaDB db = new MariaDB("db", "3306", "betterminecraft", "root", "secret");
     private final BankDb bank = new BankDb(db);
-
+    // Command Registry
+    private final CommandRegistry commandRegistry = new CommandRegistry();
 
     /**
      * Executed on load
@@ -93,8 +98,9 @@ public class Core extends JavaPlugin {
         pm.registerEvents(new PlayerDamageListener(), this);
         pm.registerEvents(new PlayerDeathEvents(), this);
         pm.registerEvents(new EconomyListener(), this);
-        // Register commands here
-        this.getCommand("killtest").setExecutor(new KillTestCommand());
+        // Register commands
+        commandRegistry.init();
+        ////this.getCommand("killtest").setExecutor(new KillTestCommand());
         this.getCommand("gethealth").setExecutor(new GetHealthCommand());
         this.getCommand("ic").setExecutor(new GiveCustomItemCommand());
         this.getCommand("balance").setExecutor(new GetBankBalanceCommand());
