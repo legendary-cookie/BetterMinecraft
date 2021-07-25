@@ -15,12 +15,12 @@ apply plugin: 'com.github.johnrengelman.shadow'
 
 
 group 'cosmo'
-version '1.0-SNAPSHOT'
+version '0.1.0'
 
 repositories {
     maven {
         url "http://docker1.getcom.de:7777"
-	allowInsecureProtocol = true
+        allowInsecureProtocol = true
     }
 }
 

@@ -22,6 +22,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+/**
+ * The Plugin's core class
+ * Everything should get setup here
+ *
+ * @author Vento
+ * @since 0.1.0
+ */
 public class Core extends JavaPlugin {
     // PlayerWrapper to access health and so on
     public static Map<Player, PlayerWrapper> players = new HashMap<>();
@@ -43,6 +50,8 @@ public class Core extends JavaPlugin {
 
     /**
      * @return Instance of the Core class
+     * @author Vento
+     * @since 0.1.0
      */
     public static Core getInstance() {
         return instance;
@@ -51,6 +60,9 @@ public class Core extends JavaPlugin {
 
     /**
      * Executed on load
+     *
+     * @author Vento
+     * @since 0.1.0
      */
     @Override
     public void onLoad() {
@@ -60,6 +72,9 @@ public class Core extends JavaPlugin {
     /**
      * Executed on enable
      * Here everything gets set up.
+     *
+     * @author Vento
+     * @since 0.1.0
      */
     @Override
     public void onEnable() {
@@ -106,6 +121,8 @@ public class Core extends JavaPlugin {
      * Returns The manager for items and recipes
      *
      * @return instance of REU
+     * @author Vento
+     * @since 0.1.0
      */
     public REU getReu() {
         return reu;
@@ -114,6 +131,8 @@ public class Core extends JavaPlugin {
 
     /**
      * @return instance of the guiInstances
+     * @author Vento
+     * @since 0.1.0
      */
     public GuiInstances getGuiInstances() {
         return guiInstances;
@@ -121,6 +140,9 @@ public class Core extends JavaPlugin {
 
     /**
      * Unregister everything
+     *
+     * @author Vento
+     * @since 0.1.0
      */
     @Override
     public void onDisable() {
@@ -131,19 +153,34 @@ public class Core extends JavaPlugin {
         log.info(String.format("[%s] Disabled Version %s", getDescription().getName(), getDescription().getVersion()));
     }
 
-
+    /**
+     * @author Vento
+     * @since 0.1.0
+     */
     public String getCurrencyNamePlural() {
         return "coins";
     }
 
+    /**
+     * @author Vento
+     * @since 0.1.0
+     */
     public String getCurrencyNameSingular() {
         return "coin";
     }
 
+    /**
+     * @author Vento
+     * @since 0.1.0
+     */
     public MariaDB getDatabase() {
         return db;
     }
 
+    /**
+     * @author Vento
+     * @since 0.1.0
+     */
     public BankDb getBankDatabase() {
         return bank;
     }
