@@ -2,7 +2,7 @@ package cosmo.betterminecraft.database;
 
 import cosmo.Cosmotil.database.MariaDB;
 import cosmo.betterminecraft.Core;
-import org.bukkit.Bukkit;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,10 +10,10 @@ import java.sql.SQLException;
 import java.util.UUID;
 
 public class BankDb {
-    private MariaDB db;
-    private Core core;
+    private final MariaDB db;
+    private final Core core;
 
-    public BankDb(MariaDB mariaDB) {
+    public BankDb(@NotNull MariaDB mariaDB) {
         core = Core.getInstance();
         db = mariaDB;
     }
@@ -22,18 +22,18 @@ public class BankDb {
         try {
             PreparedStatement ps = db.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS bank (UUID VARCHAR(100),purse INT(100), balance INT(100),PRIMARY KEY (UUID))");
             ps.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
         }
     }
 
     public void addCoinsToBank(UUID uuid, int amount) {
         try {
-            int curbal = getPlayerBankBalance(uuid);
+            int currentBalance = getPlayerBankBalance(uuid);
             PreparedStatement preparedStatement = db.getConnection().prepareStatement(
                     "UPDATE bank SET balance=? WHERE UUID=?"
             );
-            preparedStatement.setInt(1, curbal + amount);
+            preparedStatement.setInt(1, currentBalance + amount);
             preparedStatement.setString(2, uuid.toString());
             preparedStatement.executeUpdate();
         } catch (SQLException exception) {
@@ -49,7 +49,7 @@ public class BankDb {
             );
             ps.setString(1, uuid.toString());
             ResultSet res = ps.executeQuery();
-            while (res.next()) {
+            if (res.next()) {
                 return res.getInt("balance");
             }
         } catch (SQLException exception) {
@@ -65,7 +65,7 @@ public class BankDb {
             );
             ps.setString(1, uuid.toString());
             ResultSet res = ps.executeQuery();
-            while (res.next()) {
+            if (res.next()) {
                 return res.getInt("purse");
             }
         } catch (SQLException exception) {

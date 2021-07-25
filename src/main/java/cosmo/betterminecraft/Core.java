@@ -33,7 +33,7 @@ public class Core extends JavaPlugin {
     // PlayerWrapper to access health and so on
     public static Map<Player, PlayerWrapper> players = new HashMap<>();
     // The PluginManager, used for registering events
-    private PluginManager pm = getServer().getPluginManager();
+    private final PluginManager pm = getServer().getPluginManager();
     // The config file
     public FileConfiguration config;
     // Instance of this class, for access to public functions
@@ -45,8 +45,8 @@ public class Core extends JavaPlugin {
     // Logger
     private static final Logger log = Logger.getLogger("Minecraft");
     // DB stuff
-    private MariaDB db = new MariaDB("db", "3306", "betterminecraft", "root", "secret");
-    private BankDb bank = new BankDb(db);
+    private final MariaDB db = new MariaDB("db", "3306", "betterminecraft", "root", "secret");
+    private final BankDb bank = new BankDb(db);
 
     /**
      * @return Instance of the Core class
