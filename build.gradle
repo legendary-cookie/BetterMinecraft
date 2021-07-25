@@ -22,19 +22,20 @@ repositories {
     maven { url "https://papermc.io/repo/repository/maven-public/" }
     maven { url "https://jitpack.io" }
     maven {
-        url "http://minecraft:8081/repository/maven-public/"
+        url "http://docker1.getcom.de:7777"
+	allowInsecureProtocol = true
     }
 }
 
 dependencies {
     // Paper api
     compileOnly "com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT"
-    // Cosmotil from nexus
-    compile "cosmo:cosmotil:1.1.6"
+    // Cosmotil
+    implementation "cosmo:cosmotil:1.1.+"
 }
 
 shadowJar {
     dependencies {
-        include dependency("cosmo:cosmotil:1.1.6")
+        include dependency("cosmo:cosmotil:1.1.+")
     }
 }
