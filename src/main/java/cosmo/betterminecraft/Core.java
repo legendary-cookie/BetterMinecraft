@@ -12,6 +12,7 @@ import cosmo.betterminecraft.gui.GuiInstances;
 import cosmo.betterminecraft.items.InfernoSword;
 import cosmo.betterminecraft.items.REU;
 import cosmo.betterminecraft.player.PlayerWrapper;
+import lombok.Getter;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
@@ -24,6 +25,7 @@ import java.util.logging.Logger;
 
 /**
  * The Plugin's core class
+ * <p>
  * Everything should get setup here
  *
  * @author Vento
@@ -37,8 +39,10 @@ public class Core extends JavaPlugin {
     // The config file
     public FileConfiguration config;
     // Instance of this class, for access to public functions
+    @Getter
     private static Core instance;
     // Instances for accessing guis
+    @Getter
     private GuiInstances guiInstances;
     // Manager
     private REU reu;
@@ -47,15 +51,6 @@ public class Core extends JavaPlugin {
     // DB stuff
     private final MariaDB db = new MariaDB("db", "3306", "betterminecraft", "root", "secret");
     private final BankDb bank = new BankDb(db);
-
-    /**
-     * @return Instance of the Core class
-     * @author Vento
-     * @since 0.1.0
-     */
-    public static Core getInstance() {
-        return instance;
-    }
 
 
     /**
@@ -128,15 +123,6 @@ public class Core extends JavaPlugin {
         return reu;
     }
 
-
-    /**
-     * @return instance of the guiInstances
-     * @author Vento
-     * @since 0.1.0
-     */
-    public GuiInstances getGuiInstances() {
-        return guiInstances;
-    }
 
     /**
      * Unregister everything
