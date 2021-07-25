@@ -17,7 +17,8 @@ public class InfernoSword implements CustomItem {
         ItemStack item = new ItemStack(Material.GOLDEN_SWORD);
         ItemMeta meta = item.getItemMeta();
         meta.displayName(Component.text("§cInferno Sword"));
-        meta.addEnchant(Enchantment.DAMAGE_ALL, 6, true);
+        meta.addEnchant(Enchantment.DAMAGE_ALL, 8, true);
+        meta.addEnchant(Enchantment.FIRE_ASPECT, 3, true);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         item.setItemMeta(meta);
         return item;

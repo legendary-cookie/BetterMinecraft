@@ -22,8 +22,18 @@ public class PlayerWrapper {
     private double health;
     private double baseHealth = Core.getInstance().config.getDouble("health.base");
 
+    private int armor;
+
     private double calculateMaxHealth() {
         return baseHealth;
+    }
+
+    public int getArmor() {
+        return armor;
+    }
+
+    public void setArmor(int armor) {
+        this.armor = armor;
     }
 
     public double getMaxHealth() {

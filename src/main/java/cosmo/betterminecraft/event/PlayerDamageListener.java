@@ -13,10 +13,11 @@ public class PlayerDamageListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onDamage(EntityDamageEvent event) {
-        double damage = event.getDamage();
+        double trueDamage = event.getDamage();
         if (!(event.getEntity() instanceof Player)) return;
         Player p = (Player) event.getEntity();
         PlayerWrapper pw = Core.players.get(p);
+        double damage = trueDamage - pw.getArmor();
         pw.setHealth(pw.getHealth() - damage);
         ScoreboardStuff.updateScoreboard(p);
         if (pw.getHealth() <= 0) {
