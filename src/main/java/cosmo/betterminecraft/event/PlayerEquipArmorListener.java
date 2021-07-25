@@ -7,6 +7,6 @@ import org.bukkit.event.Listener;
 public class PlayerEquipArmorListener implements Listener {
     @EventHandler
     public void onEquipArmor(ArmorEquipEvent event) {
-        
+        event.getPlayer().sendRawMessage("fy");
     }
 }

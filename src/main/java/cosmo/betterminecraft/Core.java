@@ -8,10 +8,7 @@ import cosmo.betterminecraft.commands.impl.GetHealthCommand;
 import cosmo.betterminecraft.commands.impl.GiveCustomItemCommand;
 import cosmo.betterminecraft.commands.impl.MoneyGuiCommand;
 import cosmo.betterminecraft.database.BankDb;
-import cosmo.betterminecraft.event.EconomyListener;
-import cosmo.betterminecraft.event.PlayerDamageListener;
-import cosmo.betterminecraft.event.PlayerDeathEvents;
-import cosmo.betterminecraft.event.PlayerServerEvents;
+import cosmo.betterminecraft.event.*;
 import cosmo.betterminecraft.event.custom.ArmorListener;
 import cosmo.betterminecraft.event.custom.DispenserArmorListener;
 import cosmo.betterminecraft.gui.GuiInstances;
@@ -100,6 +97,7 @@ public class Core extends JavaPlugin {
         pm.registerEvents(new PlayerDamageListener(), this);
         pm.registerEvents(new PlayerDeathEvents(), this);
         pm.registerEvents(new EconomyListener(), this);
+        pm.registerEvents(new PlayerEquipArmorListener(), this);
         pm.registerEvents(new ArmorListener(getConfig().getStringList("blocked")), this);
         try {
             Class.forName("org.bukkit.event.block.BlockDispenseArmorEvent");
