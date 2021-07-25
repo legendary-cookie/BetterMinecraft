@@ -9,6 +9,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
+/**
+ * Everything related to bank/purse db
+ * is handled in this class
+ *
+ * @author Vento
+ * @since 0.1.0
+ */
 public class BankDb {
     private final MariaDB db;
     private final Core core;
@@ -18,6 +25,12 @@ public class BankDb {
         db = mariaDB;
     }
 
+    /**
+     * Initialize the DB's tables
+     *
+     * @author Vento
+     * @since 0.1.0
+     */
     public void setupTables() {
         try {
             PreparedStatement ps = db.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS bank (UUID VARCHAR(100),purse INT(100), balance INT(100),PRIMARY KEY (UUID))");
@@ -27,6 +40,15 @@ public class BankDb {
         }
     }
 
+    /**
+     * Add the given amount of coins to
+     * the players bank account
+     *
+     * @param amount The amount of money to add
+     * @param uuid   The players UUID
+     * @author Vento
+     * @since 0.1.0
+     */
     public void addCoinsToBank(UUID uuid, int amount) {
         try {
             int currentBalance = getPlayerBankBalance(uuid);
@@ -41,7 +63,14 @@ public class BankDb {
         }
     }
 
-
+    /**
+     * Get a players bank balance
+     * See {@link cosmo.betterminecraft.database.BankDb#getPlayerPurse(UUID)}
+     * to get a players purse
+     *
+     * @author Vento
+     * @since 0.1.0
+     */
     public int getPlayerBankBalance(UUID uuid) {
         try {
             PreparedStatement ps = db.getConnection().prepareStatement(
@@ -58,6 +87,14 @@ public class BankDb {
         return -1;
     }
 
+    /**
+     * Get a players purse
+     *
+     * @param uuid The Players UUID
+     * @return The Players purse
+     * @author Vento
+     * @since 0.1.0
+     */
     public int getPlayerPurse(UUID uuid) {
         try {
             PreparedStatement ps = db.getConnection().prepareStatement(
@@ -74,7 +111,12 @@ public class BankDb {
         return 0;
     }
 
-
+    /**
+     * Add player to db
+     *
+     * @author Vento
+     * @since 0.1.0
+     */
     public void createPlayerAccount(UUID uuid) {
         try {
             PreparedStatement ps = db.getConnection().prepareStatement("INSERT IGNORE INTO bank (UUID, purse, balance) VALUES (?,?,?)");
